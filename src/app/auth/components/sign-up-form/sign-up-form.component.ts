@@ -16,9 +16,8 @@ import { ToastModule } from 'primeng/toast';
 import { RequestStatus } from '@common/types/request-status.type';
 import { AuthService } from '@auth/services/auth.service';
 import { CreateUser } from '@auth/interfaces/create-user.interface';
-
 @Component({
-  selector: 'app-sign-in-page',
+  selector: 'auth-sign-up-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
@@ -28,10 +27,10 @@ import { CreateUser } from '@auth/interfaces/create-user.interface';
     ButtonModule,
   ],
   providers: [MessageService],
-  templateUrl: './sign-up-page.component.html',
-  styleUrl: './sign-up-page.component.css',
+  templateUrl: './sign-up-form.component.html',
+  styleUrl: './sign-up-form.component.css',
 })
-export class SignUpPageComponent {
+export class SignUpFormComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
 

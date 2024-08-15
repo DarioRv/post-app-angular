@@ -1,0 +1,46 @@
+<form
+  class="flex flex-col items-center p-4 rounded w-full max-w-screen-sm"
+  [formGroup]="signInForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="text-4xl text-white">Crea tu cuenta</h1>
+  <div class="my-3 w-full">
+    <p-floatLabel>
+      <input
+        class="w-full"
+        pInputText
+        id="username"
+        formControlName="username"
+      />
+      <label for="username">Usuario</label>
+    </p-floatLabel>
+    @if(username.touched && username.hasError('required')) {
+    <small class="text-red-400"> El usuario es requerido </small>
+    }
+  </div>
+  <div class="my-3 w-full">
+    <p-floatLabel>
+      <input
+        class="w-full"
+        pInputText
+        id="password"
+        formControlName="password"
+      />
+      <label for="password">Contraseña</label>
+    </p-floatLabel>
+    @if(password.touched && password.hasError('required')) {
+    <small class="text-red-400"> La contraseña es requerida </small>
+    }
+  </div>
+
+  <button
+    class="bg-white text-black rounded-full w-full border-0 p-2 text-base font-bold mt-8"
+  >
+    Siguiente
+  </button>
+</form>
+
+<p class="text-slate-300">
+  ¿No tienes cuenta?
+  <a class="text-sky-500" routerLink="../sign-up">Regístrate</a>
+</p>
