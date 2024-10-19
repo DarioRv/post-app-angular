@@ -13,20 +13,10 @@
     <div class="w-full max-w-72 mt-5">
       <button
         class="w-full rounded-full border-0 bg-sky-500 text-base font-bold p-2 transition-colors hover:bg-sky-600"
-        (click)="signUpModalVisible = true"
-        routerLink="sign-up"
+        (click)="showSignUpForm.set(true)"
       >
         Crear cuenta
       </button>
-      <p-dialog
-        header="Crea tu cuenta"
-        [modal]="true"
-        [(visible)]="signUpModalVisible"
-        draggable="false"
-        [style]="{ width: '100%', 'max-width': '600px' }"
-      >
-        <router-outlet />
-      </p-dialog>
       <small class="block text-xs mt-1">
         Al registrarte, aceptas los
         <span
@@ -46,13 +36,12 @@
           Uso de Cookies </span
         >.
       </small>
-
       <span class="text-xl font-bold block mb-3 mt-16"
         >¿Ya tienes una cuenta?</span
       >
       <button
         class="w-full rounded-full border border-slate-500 bg-transparent text-sky-500 text-base font-bold p-2 transition-colors hover:bg-sky-500/5"
-        (click)="signUpModalVisible = true"
+        (click)="showSignInForm.set(true)"
         routerLink="sign-in"
       >
         Iniciar sesión
@@ -60,3 +49,19 @@
     </div>
   </div>
 </section>
+
+@if (showAuthModal()) {
+<p-dialog
+  [modal]="true"
+  [visible]="showAuthModal()"
+  draggable="false"
+  [style]="{ width: '100%', 'max-width': '600px' }"
+  (visibleChange)="showSignUpForm.set(false); showSignInForm.set(false)"
+>
+  @if (showSignUpForm()) {
+  <auth-sign-up-form />
+  } @if (showSignInForm()) {
+  <auth-sign-in />
+  }
+</p-dialog>
+}

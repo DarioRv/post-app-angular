@@ -58,7 +58,8 @@ export class SignInFormComponent {
         console.log('User logged in');
       },
       error: (err) => {
-        console.error(err);
+        this.username.setErrors({ credentialsNotValid: true });
+        this.password.setErrors({ credentialsNotValid: true });
       },
     });
   }

@@ -3,7 +3,7 @@
   [formGroup]="signInForm"
   (ngSubmit)="onSubmit()"
 >
-  <h1 class="text-4xl text-white">Crea tu cuenta</h1>
+  <h1 class="text-4xl text-white">Iniciar sesión</h1>
   <div class="my-3 w-full">
     <p-floatLabel>
       <input
@@ -16,6 +16,8 @@
     </p-floatLabel>
     @if(username.touched && username.hasError('required')) {
     <small class="text-red-400"> El usuario es requerido </small>
+    } @if(username.touched && username.hasError('credentialsNotValid')) {
+    <small class="text-red-400"> Credenciales inválidas </small>
     }
   </div>
   <div class="my-3 w-full">
@@ -30,6 +32,8 @@
     </p-floatLabel>
     @if(password.touched && password.hasError('required')) {
     <small class="text-red-400"> La contraseña es requerida </small>
+    } @if(password.touched && password.hasError('credentialsNotValid')) {
+    <small class="text-red-400"> Credenciales inválidas </small>
     }
   </div>
 
