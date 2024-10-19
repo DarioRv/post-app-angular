@@ -1,0 +1,41 @@
+<div class="max-w-[1200px] h-screen mx-auto flex flex-row">
+  <div class="flex flex-col gap-3 min-w-[240px] px-4">
+    <i
+      class="pi pi-twitter text-2xl p-4 text-center aspect-square rounded-full hover:bg-gray-950 w-fit"
+    ></i>
+    @for (item of menu; track $index) {
+    <a
+      class="flex gap-5 items-center text-white text-2xl px-5 py-2 no-underline rounded-full hover:bg-gray-950"
+      [routerLink]="item.routerLink"
+      routerLinkActive="font-bold"
+    >
+      <i class="pi {{ item.icon }} text-2xl"></i>
+      <span>{{ item.label }}</span>
+    </a>
+    }
+    <button
+      class="text-white text-lg text-center font-bold px-5 py-2 no-underline rounded-full bg-sky-500 border-0 hover:cursor-pointer"
+    >
+      Publicar
+    </button>
+
+    <div class="flex flex-row items-end pb-4 gap-3 flex-1">
+      <div
+        class="size-10 text-center font-bold p-2 aspect-square rounded-full bg-sky-500"
+      >
+        {{ currentUser().username.charAt(0).toUpperCase() }}
+      </div>
+      <div class="flex flex-col flex-1">
+        <span class="font-bold">{{ currentUser().fullName }}</span>
+        <span class="text-slate-500">{{ currentUser().username }}</span>
+      </div>
+      <div class="">
+        <i class="pi pi-ellipsis-h text-2xl"></i>
+      </div>
+    </div>
+  </div>
+  <div class="border-x border-y-0 border-solid border-gray-600 flex-grow">
+    <router-outlet />
+  </div>
+  <div class="px-4"></div>
+</div>

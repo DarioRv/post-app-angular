@@ -1,0 +1,67 @@
+<section
+  class="flex flex-col items-center justify-center h-screen w-screen md:flex-row md:justify-evenly"
+>
+  <div class="px-10">
+    <i class="pi pi-twitter text-7xl md:text-[360px]"></i>
+  </div>
+  <div class="px-10">
+    <h1 class="text-4xl break-words text-wrap sm:text-7xl">
+      Lo que está <br />
+      pasando ahora
+    </h1>
+    <span class="text-2xl font-bold md:text-3xl">Únete Hoy</span>
+    <div class="w-full max-w-72 mt-5">
+      <button
+        class="w-full rounded-full border-0 bg-sky-500 text-base font-bold p-2 transition-colors hover:bg-sky-600"
+        (click)="showSignUpForm.set(true)"
+      >
+        Crear cuenta
+      </button>
+      <small class="block text-xs mt-1">
+        Al registrarte, aceptas los
+        <span
+          class="text-sky-500 cursor-pointer hover:text-sky-600 hover:underline"
+        >
+          Términos de servicio
+        </span>
+        y la
+        <span
+          class="text-sky-500 cursor-pointer hover:text-sky-600 hover:underline"
+        >
+          Política de privacidad </span
+        >, incluida la política de
+        <span
+          class="text-sky-500 cursor-pointer hover:text-sky-600 hover:underline"
+        >
+          Uso de Cookies </span
+        >.
+      </small>
+      <span class="text-xl font-bold block mb-3 mt-16"
+        >¿Ya tienes una cuenta?</span
+      >
+      <button
+        class="w-full rounded-full border border-slate-500 bg-transparent text-sky-500 text-base font-bold p-2 transition-colors hover:bg-sky-500/5"
+        (click)="showSignInForm.set(true)"
+        routerLink="sign-in"
+      >
+        Iniciar sesión
+      </button>
+    </div>
+  </div>
+</section>
+
+@if (showAuthModal()) {
+<p-dialog
+  [modal]="true"
+  [visible]="showAuthModal()"
+  draggable="false"
+  [style]="{ width: '100%', 'max-width': '600px' }"
+  (visibleChange)="showSignUpForm.set(false); showSignInForm.set(false)"
+>
+  @if (showSignUpForm()) {
+  <auth-sign-up-form />
+  } @if (showSignInForm()) {
+  <auth-sign-in />
+  }
+</p-dialog>
+}
