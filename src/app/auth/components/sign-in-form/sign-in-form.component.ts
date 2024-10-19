@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Credentials } from '@auth/interfaces/credentials.interface';
 import { AuthService } from '@auth/services/auth.service';
 import { ButtonModule } from 'primeng/button';
@@ -28,6 +28,7 @@ import { InputTextModule } from 'primeng/inputtext';
 export class SignInFormComponent {
   private readonly fb: FormBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
   signInForm = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
@@ -54,8 +55,7 @@ export class SignInFormComponent {
   signIn(credentials: Credentials): void {
     this.authService.signIn(credentials).subscribe({
       next: () => {
-        // !TODO Realizar redirección a la página de inicio
-        console.log('User logged in');
+        this.router.navigate(['/app/home']);
       },
       error: (err) => {
         this.username.setErrors({ credentialsNotValid: true });
